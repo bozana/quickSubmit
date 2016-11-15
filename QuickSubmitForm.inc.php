@@ -171,6 +171,8 @@ class QuickSubmitForm extends Form {
 			$templateMgr->assign('hasIssues', false);
 		}
 
+		$templateMgr->assign('stageId', WORKFLOW_STAGE_ID_PRODUCTION);
+
 		// Get published Issues
 		//$issueDao = DAORegistry::getDAO('IssueDAO');
 		//$issuesIterator = $issueDao->getPublishedIssues($this->context->getId());
@@ -248,7 +250,7 @@ class QuickSubmitForm extends Form {
 			$submission = $submissionDao->newDataObject();
 			$submission->setContextId($this->context->getId());
             $submission->setStatus(STATUS_QUEUED);
-            $submission->setSubmissionProgress(0);
+            $submission->setSubmissionProgress(1);
 			$submission->stampStatusModified();
 			$submission->setStageId(WORKFLOW_STAGE_ID_SUBMISSION);
 			$submission->setSectionId(current(array_keys($sectionOptions)));
@@ -283,7 +285,6 @@ class QuickSubmitForm extends Form {
 				$this->publishedSubmission = $publishedSubmission;
 			}
 		}
-
 	}
 
 	/**
@@ -359,6 +360,7 @@ class QuickSubmitForm extends Form {
 		$this->submission->setLocale($this->getData('locale'));
         $this->submission->setStageId(WORKFLOW_STAGE_ID_PRODUCTION);
         $this->submission->setDateSubmitted(Core::getCurrentDate());
+		$this->submission->setSubmissionProgress(0);
 
 		$submissionDao = Application::getSubmissionDAO();
         $submissionDao->updateObject($this->submission);

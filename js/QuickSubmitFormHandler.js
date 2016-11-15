@@ -37,10 +37,6 @@
 			$.pkp.plugins.importexport.quickSubmit.js.QuickSubmitFormHandler,
 			$.pkp.controllers.form.FormHandler);
 
-
-
-
-
     /**
 	 * Callback to replace the element's content.
 	 *
@@ -67,6 +63,8 @@
 			    });
 
 			    $('input[type=radio][name=articleStatus]').trigger('change');
+
+
 			};
 
     /** @param {jQuery} $ jQuery closure. */
