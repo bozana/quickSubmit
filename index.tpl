@@ -53,7 +53,7 @@
 		{fbvFormArea id="coverImage" title="editor.issues.coverPage"}
 			{fbvFormSection}
 				{include file="controllers/fileUploadContainer.tpl" id="coverImageUploader"}
-				<input type="hidden" name="temporaryFileId" id="temporaryFileId" value="" />
+				
 			{/fbvFormSection}
 			{fbvFormSection id="coverImagePreview"}
 				{if $coverImage != ''}
@@ -79,9 +79,10 @@
 			{/fbvFormSection}
 		{/fbvFormArea}
 	</form> 
+
 	<form class="pkp_form" id="quickSubmitForm" method="post" action="{plugin_url path="saveSubmit"}">
 		{if $submissionId}<input type="hidden" name="submissionId" value="{$submissionId|escape}"/>{/if}
-
+		<input type="hidden" name="temporaryFileId" id="temporaryFileId" value="" />
 		{csrf}
 		{include file="controllers/notification/inPlaceNotification.tpl" notificationId="quickSubmitFormNotification"}
 
